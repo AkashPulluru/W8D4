@@ -1,77 +1,89 @@
-// function sum () {
-//     let sum = 0;
-//     for (let i = 0; i < arguments.length; i++) {
-//         sum += arguments[i];
-//     }
-//     return sum;
-// }
+// arguments way
+function sum () {
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
 
 // console.log(sum(1,2,3,4,5))
 
-// function sum (...nums) {
-//     let sum = 0;
-//     for (let i = 0; i < nums.length; i++) {
-//         sum += nums[i];
-//     }
-//     return sum;
-// }
+// ellipse way
+function sum (...nums) {
+    let sum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+    }
+    return sum;
+}
 
 // console.log(sum(1,2,3,4,5))
 
 
 
-// class Cat {
-//     constructor(name) {
-//       this.name = name;
-//     }
+class Cat {
+    constructor(name) {
+      this.name = name;
+    }
   
-//     says(sound, person) {
-//       console.log(`${this.name} says ${sound} to ${person}!`);
-//       return true;
-//     }
-//   }
+    says(sound, person) {
+      console.log(`${this.name} says ${sound} to ${person}!`);
+      return true;
+    }
+  }
   
-//   class Dog {
-//     constructor(name) {
-//       this.name = name;
-//     }
-//   }
+  class Dog {
+    constructor(name) {
+      this.name = name;
+    }
+  }
   
-//   const markov = new Cat("Markov");
-//   const pavlov = new Dog("Pavlov");
+  const markov = new Cat("Markov");
+  const pavlov = new Dog("Pavlov");
 
-//   Function.prototype.myBind = function(obj, ...args) {
+  // ... method
+  Function.prototype.myBind = function(obj, ...args) {
+    let func = this;
+    return function (...arguments2) {
+        func.apply(obj, [...args, ...arguments2]);
+    }
+}
+
+// arguments method
+// Function.prototype.myBind = function(obj, ...args) {
 //     let func = this;
 //     return function (...arguments2) {
 //         func.apply(obj, [...args, ...arguments2]);
 //     }
 // }
-  
-//   markov.says("meow", "Ned");
-//   // Markov says meow to Ned!
-//   // true
-  
-//   // bind time args are "meow" and "Kush", no call time args
-//   markov.says.myBind(pavlov, "meow", "Kush")();
-//   // Pavlov says meow to Kush!
-//   // true
-  
-//   // no bind time args (other than context), call time args are "meow" and "a tree"
 
-//   markov.says.myBind(pavlov)("meow", "a tree");
-//   // Pavlov says meow to a tree!
-//   // true
+  
+  markov.says("meow", "Ned");
+  // Markov says meow to Ned!
+  // true
+  
+  // bind time args are "meow" and "Kush", no call time args
+  markov.says.myBind(pavlov, "meow", "Kush")();
+  // Pavlov says meow to Kush!
+  // true
+  
+  // no bind time args (other than context), call time args are "meow" and "a tree"
 
-//   // bind time arg is "meow", call time arg is "Markov"
-// markov.says.myBind(pavlov, "meow")("Markov");
-// // Pavlov says meow to Markov!
-// // true
+  markov.says.myBind(pavlov)("meow", "a tree");
+  // Pavlov says meow to a tree!
+  // true
 
-// // no bind time args (other than context), call time args are "meow" and "me"
-// const notMarkovSays = markov.says.myBind(pavlov);
-// notMarkovSays("meow", "me");
-// // Pavlov says meow to me!
-// // true
+  // bind time arg is "meow", call time arg is "Markov"
+markov.says.myBind(pavlov, "meow")("Markov");
+// Pavlov says meow to Markov!
+// true
+
+// no bind time args (other than context), call time args are "meow" and "me"
+const notMarkovSays = markov.says.myBind(pavlov);
+notMarkovSays("meow", "me");
+// Pavlov says meow to me!
+// true
 
 
 function curriedSum(numArgs) {
@@ -123,10 +135,10 @@ function sum(...args) {
     console.log(sum);
     return sum;
 }
-let func = sum.curry(3);
-func(1);
-func(5);
-func(2);
+// let func = sum.curry(3);
+// func(1);
+// func(5);
+// func(2);
 
 
 // console.log(sum.curry(5));
