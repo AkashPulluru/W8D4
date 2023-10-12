@@ -6,7 +6,8 @@ It's time to practice _prototypal inheritance_!
 
 By the end of this practice, you should be able to
 
-* Write and explain `Function.prototype.inherits`
+* Write and exp
+lain `Function.prototype.inherits`
   * Explain what a `Surrogate` class does and why you need it
   * Explain what the `constructor` property does
   * Explain what `__proto__` is
@@ -28,7 +29,8 @@ There are a number of steps:
 * Set `Subclass.prototype.constructor = Subclass`
 
 Write a `Function.prototype.inherits` method that will do this for you. Do not
-use `Object.create` right now; you should deeply understand what the `new`
+use `Object.create` right now; you should deeply
+ understand what the `new`
 keyword does and how the `__proto__` chain is constructed. This will help you in
 the upcoming Asteroids project:
 
