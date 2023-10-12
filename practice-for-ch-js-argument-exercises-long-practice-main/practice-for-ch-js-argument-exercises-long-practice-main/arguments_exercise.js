@@ -100,19 +100,34 @@ Collect arguments until there are numArgs of them,
 If there are too few arguments still, it should return itself.
 When there are numArgs arguments, it should call the original function.
 */
-Function.prototype.curry() = function(numArgs) {
+Function.prototype.curry = function(numArgs) {
     let args = [];
-    if (args.length === numArgs) {
-        let sum = curriedSum(args[0]);
-        for(let i = 1; i < args.length; i++) {
-            sum(args[i]);
+    let that = this;
+    return function subFunction (num) {
+        args.push(num);
+        if (args.length === numArgs) {
+            return that.apply(null, args);
         }
-        return sum;
-        // return curriedSum(numArgs);
-    }
-    else {
-        return curry(numArgs-1);
+        else {
+            return subFunction;
+        }
     }
 }
 
+function sum(...args) {
+    let sum = 0;
+    for(let i = 0; i < args.length; i++) {
+        sum += args[i];
+    }
+
+    console.log(sum);
+    return sum;
+}
+let func = sum.curry(3);
+func(1);
+func(5);
+func(2);
+
+
+// console.log(sum.curry(5));
 
