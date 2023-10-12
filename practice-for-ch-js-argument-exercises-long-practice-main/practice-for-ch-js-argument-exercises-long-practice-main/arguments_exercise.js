@@ -10,13 +10,13 @@ function sum () {
 // console.log(sum(1,2,3,4,5))
 
 // ellipse way
-function sum (...nums) {
-    let sum = 0;
-    for (let i = 0; i < nums.length; i++) {
-        sum += nums[i];
-    }
-    return sum;
-}
+// function sum (...nums) {
+//     let sum = 0;
+//     for (let i = 0; i < nums.length; i++) {
+//         sum += nums[i];
+//     }
+//     return sum;
+// }
 
 // console.log(sum(1,2,3,4,5))
 
@@ -43,18 +43,21 @@ class Cat {
   const pavlov = new Dog("Pavlov");
 
   // ... method
-  Function.prototype.myBind = function(obj, ...args) {
-    let func = this;
-    return function (...arguments2) {
-        func.apply(obj, [...args, ...arguments2]);
-    }
-}
-
-// arguments method
-// Function.prototype.myBind = function(obj, ...args) {
+//   Function.prototype.myBind = function(obj, ...args) {
 //     let func = this;
 //     return function (...arguments2) {
 //         func.apply(obj, [...args, ...arguments2]);
+//     }
+// }
+
+// arguments method
+// Function.prototype.myBind = function(obj) {
+//     let func = this;
+//     let args = arguments;
+//     // console.log(args);
+//     return function () {
+//         // console.log(arguments);
+//         func.call(obj, args, arguments);
 //     }
 // }
 
