@@ -73,3 +73,46 @@
 // // Pavlov says meow to me!
 // // true
 
+
+function curriedSum(numArgs) {
+    let numbers = [];
+
+    return function _curriedSum(num) {
+        numbers.push(num);
+        if (numbers.length === numArgs) {
+            let sum = 0;
+            for(let i = 0; i < numbers.length; i++) {
+                sum += numbers[i];
+            }
+            return sum;
+        }
+        else {return _curriedSum;}
+    }
+}
+
+// const sum = curriedSum(4);
+// console.log(sum(5)(30)(20)(1)); // => 56
+
+/*
+Write a method Function.prototype.curry(numArgs). This should return a function that will
+
+Collect arguments until there are numArgs of them,
+If there are too few arguments still, it should return itself.
+When there are numArgs arguments, it should call the original function.
+*/
+Function.prototype.curry() = function(numArgs) {
+    let args = [];
+    if (args.length === numArgs) {
+        let sum = curriedSum(args[0]);
+        for(let i = 1; i < args.length; i++) {
+            sum(args[i]);
+        }
+        return sum;
+        // return curriedSum(numArgs);
+    }
+    else {
+        return curry(numArgs-1);
+    }
+}
+
+
